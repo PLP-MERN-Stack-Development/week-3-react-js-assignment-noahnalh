@@ -1,72 +1,80 @@
-import { useState } from 'react';
-import './App.css';
-
-// Import your components here
-// import Button from './components/Button';
-// import Navbar from './components/Navbar';
-// import Footer from './components/Footer';
-// import TaskManager from './components/TaskManager';
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import TaskManager from "./components/TaskManager";
+import ItemList from "./components/ItemList";
+import PostList from "./components/PostList";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    const active = saved || (prefersDark ? "dark" : "light");
+
+    setTheme(active);
+    document.documentElement.classList.toggle("dark", active === "dark");
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      {/* Navbar component will go here */}
-      <header className="bg-white dark:bg-gray-800 shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold">PLP Task Manager</h1>
-        </div>
-      </header>
+    <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white transition-colors duration-300">
+      {/* Theme Toggle Button */}
+      <div className="flex justify-end p-4">
+        <button
+          onClick={toggleTheme}
+          className="px-4 py-2 rounded border border-gray-400 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 transition"
+        >
+          Toggle {theme === "dark" ? "Light" : "Dark"} Mode
+        </button>
+      </div>
 
-      <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg p-6">
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-lg mb-4">
-              Edit <code className="font-mono bg-gray-200 dark:bg-gray-700 p-1 rounded">src/App.jsx</code> and save to test HMR
-            </p>
-            
-            <div className="flex items-center gap-4 my-4">
-              <button
-                onClick={() => setCount((count) => count - 1)}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
-              >
-                -
-              </button>
-              <span className="text-xl font-bold">{count}</span>
-              <button
-                onClick={() => setCount((count) => count + 1)}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
-              >
-                +
-              </button>
-            </div>
+      {/* Logos Centered */}
+      <div className="flex justify-center items-center gap-6 mt-4">
+        <a href="https://vite.dev" target="_blank" rel="noopener noreferrer">
+          <img src={viteLogo} className="logo w-20" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
+          <img src={reactLogo} className="logo react w-20" alt="React logo" />
+        </a>
+      </div>
 
-            <p className="text-gray-500 dark:text-gray-400 mt-4">
-              Implement your TaskManager component here
-            </p>
-          </div>
-        </div>
-        
-        {/* API data display will go here */}
-        <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-4">API Data</h2>
-          <p className="text-gray-500 dark:text-gray-400">
-            Fetch and display data from an API here
-          </p>
-        </div>
-      </main>
+      <h1 className="text-center text-3xl font-bold mt-6">Vite + React</h1>
 
-      {/* Footer component will go here */}
-      <footer className="bg-white dark:bg-gray-800 shadow mt-auto">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} PLP Task Manager. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <div className="card text-center mt-6">
+        <button
+          onClick={() => setCount((count) => count + 1)}
+          className="px-4 py-2 mt-4 bg-blue-500 text-white rounded hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 transition"
+        >
+          count is {count}
+        </button>
+        <p className="mt-2">
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+
+      <p className="text-center mt-4 text-sm text-gray-600 dark:text-gray-400">
+        Click on the Vite and React logos to learn more
+      </p>
+
+      {/* Custom Components */}
+      <div className="my-10 px-4">
+        <TaskManager />
+        <PostList />
+      </div>
     </div>
   );
 }
 
-export default App; 
+export default App;
