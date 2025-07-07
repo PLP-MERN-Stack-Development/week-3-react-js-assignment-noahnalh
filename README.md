@@ -122,7 +122,3 @@ GitHub: [@noahnalh](https://github.com/noahnalh)
 
 ---
 
-## 📄 License
-
-This project is licensed under the [ISC License](LICENSE).
-```
