@@ -42,52 +42,46 @@ const PostList = () => {
   const currentPosts = filtered.slice((page - 1) * limit, page * limit);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Posts</h2>
+    <div className="mt-10">
+      <h2 className="text-2xl font-bold mb-4">Posts</h2>
 
       <input
         type="text"
         placeholder="Search by title..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{ marginBottom: "20px", padding: "8px", width: "100%" }}
+        className="w-full mb-4 p-2 border rounded dark:bg-gray-700 dark:border-gray-600"
       />
 
       {loading && <p>Loading...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="text-red-500">{error}</p>}
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          gap: "1rem",
-        }}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {currentPosts.map((post) => (
           <div
             key={post.id}
-            style={{
-              border: "1px solid #ddd",
-              borderRadius: "8px",
-              padding: "15px",
-              background: "#fafafa",
-            }}
+            className="border rounded-lg p-4 bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
           >
-            <h4>{post.title}</h4>
-            <p>{post.body}</p>
+            <h4 className="font-semibold mb-2">{post.title}</h4>
+            <p className="text-sm">{post.body}</p>
           </div>
         ))}
       </div>
 
       {!loading && !error && (
-        <div style={{ marginTop: "20px", textAlign: "center" }}>
-          <button disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
+        <div className="mt-6 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+            disabled={page === 1}
+            onClick={() => setPage((p) => p - 1)}
+          >
             Prev
           </button>
-          <span style={{ margin: "0 10px" }}>
+          <span className="text-sm">
             Page {page} of {totalPages}
           </span>
           <button
+            className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
             disabled={page === totalPages}
             onClick={() => setPage((p) => p + 1)}
           >
