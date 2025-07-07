@@ -36,6 +36,7 @@ This is a responsive React application built with **Vite** and styled using **Ta
 ![Post List](public/screenshots/Postlist.png)
 
 ---
+```
 
 ## 📁 Project Structure
 
@@ -76,6 +77,7 @@ This is a responsive React application built with **Vite** and styled using **Ta
 └── vite.config.js
 ```
 
+```md
 ---
 
 ## ⚙️ Installation & Setup
@@ -120,3 +122,7 @@ GitHub: [@noahnalh](https://github.com/noahnalh)
 
 ---
 
+## 📄 License
+
+This project is licensed under the [ISC License](LICENSE).
+```
