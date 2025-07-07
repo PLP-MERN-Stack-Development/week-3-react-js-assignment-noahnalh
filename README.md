@@ -1,12 +1,41 @@
-# React + Vite
+# Week 3 - React + Tailwind CSS Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React application built using Vite and styled with Tailwind CSS. It includes:
 
-Currently, two official plugins are available:
+- ✅ A **Task Manager** with local storage, filters, and delete/toggle functionality.
+- ✅ A **Post List** fetched from an API with pagination, search, and error/loading states.
+- 🌙 A **Theme Switcher** (Light/Dark mode) using Tailwind's dark mode.
+- 📱 **Responsive Design** for mobile, tablet, and desktop.
+- 🎨 Tailwind utility classes for layout, spacing, and animations.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Live Demo
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+👉 [Click here to view the live site](https://week-3-react-js-assignment-noahnalh.netlify.app)
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend**: React, Vite
+- **Styling**: Tailwind CSS
+- **Package Manager**: pnpm
+- **Deployment**: Netlify
+
+---
+
+## 📂 Project Structure
+
+```bash
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── TaskManager.jsx
+│   │   ├── PostList.jsx
+│   │   └── Button.jsx
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── package.json
+└── tailwind.config.js
